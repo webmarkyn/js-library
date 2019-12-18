@@ -29,6 +29,22 @@ let myLibrary = [
   })
 ];
 
+function render() {
+  bookList.innerHTML = '';
+  myLibrary.forEach((book, index) => {
+    bookList.innerHTML += `<li class="books-list-item">
+        <p class="name">${book.name}</p>
+        <p class="author">${book.author}</p>
+        <p class="pages">${book.pages}</p>
+        <input type="checkbox" name="readStatus" onchange="handleCheck(this)" ${
+        book._read ? "checked" : null
+    } 
+        data-index="${index}">
+        <button data-index="${index}" onclick="handleDelete(this)" class="bookDelete">Delete</button>
+    </li>`;
+  });
+}
+
 function bound() {
   newBookButton.addEventListener('click', e => {
     newBookPopup.style.display = 'flex';
@@ -69,22 +85,6 @@ function handleCheck(checkBox) {
 function handleDelete(el) {
   myLibrary.splice(el.dataset.index, 1);
   render();
-}
-
-function render() {
-  bookList.innerHTML = '';
-  myLibrary.forEach((book, index) => {
-    bookList.innerHTML += `<li class="books-list-item">
-        <p class="name">${book.name}</p>
-        <p class="author">${book.author}</p>
-        <p class="pages">${book.pages}</p>
-        <input type="checkbox" name="readStatus" onchange="handleCheck(this)" ${
-          book._read ? "checked" : null
-        } 
-        data-index="${index}">
-        <button data-index="${index}" onclick="handleDelete(this)" class="bookDelete">Delete</button>
-    </li>`;
-  });
 }
 
 render();
