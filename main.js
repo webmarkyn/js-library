@@ -3,9 +3,7 @@ const newBookButton = document.querySelector('#addNewBook');
 const newBookPopup = document.querySelector('#newBookPopup');
 const popupCancelButton = document.querySelector('#popupCancelButton');
 const popupForm = document.querySelector('#popupForm');
-const popupFormInputs = document.querySelectorAll(
-  '#popupForm input:not([value="Save"])',
-);
+const popupFormInputs = document.querySelectorAll('#popupForm input:not([value="Save"])');
 
 class Book {
   constructor(options) {
