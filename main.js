@@ -4,29 +4,29 @@ const newBookPopup = document.querySelector('#newBookPopup');
 const popupCancelButton = document.querySelector('#popupCancelButton');
 const popupForm = document.querySelector('#popupForm');
 const popupFormInputs = document.querySelectorAll(
-    '#popupForm input:not([value="Save"])'
-  );
+  '#popupForm input:not([value="Save"])',
+);
 
 class Book {
   constructor(options) {
     this.name = options.name;
     this.author = options.author;
-    this._read = options.read;
+    this.read = options.read;
     this.pages = options.pages;
   }
 
   set read(value) {
-    this._read = value;
+    this.read = value;
   }
 }
 
-let myLibrary = [
+const myLibrary = [
   new Book({
     name: 'Book 1',
     author: 'Author 1',
     read: false,
-    pages: 35
-  })
+    pages: 35,
+  }),
 ];
 
 function render() {
@@ -37,8 +37,8 @@ function render() {
         <p class="author">${book.author}</p>
         <p class="pages">${book.pages}</p>
         <input type="checkbox" name="readStatus" onchange="handleCheck(this)" ${
-        book._read ? "checked" : null
-    } 
+  book.read ? 'checked' : null
+} 
         data-index="${index}">
         <button data-index="${index}" onclick="handleDelete(this)" class="bookDelete">Delete</button>
     </li>`;
@@ -46,42 +46,48 @@ function render() {
 }
 
 function cleanForm() {
-  [...popupFormInputs].forEach(el => {
-    el.value = "";
+  [...popupFormInputs].forEach((el) => {
+    // eslint-disable-next-line no-param-reassign
+    el.value = '';
+    // eslint-disable-next-line no-param-reassign
     el.checked = false;
   });
 }
 
 function bound() {
-  newBookButton.addEventListener('click', e => {
+  newBookButton.addEventListener('click', () => {
     newBookPopup.style.display = 'flex';
   });
-  popupCancelButton.addEventListener('click', e => {
+  popupCancelButton.addEventListener('click', () => {
     newBookPopup.style.display = 'none';
     cleanForm();
   });
-  popupForm.addEventListener('submit', e => {
+
+  function addBookToLibrary() {
+    const options = {};
+    [...popupFormInputs].forEach((el) => {
+      options[el.name] = el.value === 'on' ? el.checked : el.value;
+    });
+    const newBook = new Book(options);
+    myLibrary.push(newBook);
+    cleanForm();
+    render();
+  }
+
+  popupForm.addEventListener('submit', (e) => {
     e.preventDefault();
     addBookToLibrary();
     newBookPopup.style.display = 'none';
   });
 }
 
-function addBookToLibrary() {
-  let options = {};
-  [...popupFormInputs].forEach(el => {
-    options[el.name] = el.value == 'on' ? el.checked : el.value;
-  });
-  let newBook = new Book(options);
-  myLibrary.push(newBook);
-  cleanForm();
-  render();
-}
 
+// eslint-disable-next-line no-unused-vars
 function handleCheck(checkBox) {
   myLibrary[checkBox.dataset.index].read = checkBox.checked;
 }
 
+// eslint-disable-next-line no-unused-vars
 function handleDelete(el) {
   myLibrary.splice(el.dataset.index, 1);
   render();
