@@ -13,3 +13,29 @@
     margin: 30px 0;
     border: 2px dashed #000;
 }
+
+.new-book-popup {
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+
+}
+
+.popup-container {
+    background: #ccc;
+}
+
+.popup-container form{
+    margin: 20px 5px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}

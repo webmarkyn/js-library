@@ -9,40 +9,25 @@
 </head>
 <body>
     <h1>Library</h1>
-    <ul class="books-list">
-        <li class="books-list-item">
-            <p class="name">Book name</p>
-            <p class="author">Book author</p>
-            <input type="checkbox" name="readStatus" id="readStatus">
-            <button>Delete</button>
-        </li>
-        <li class="books-list-item">
-            <p class="name">Book name</p>
-            <p class="author">Book author</p>
-            <input type="checkbox" name="readStatus" id="readStatus">
-            <button>Delete</button>
-        </li><li class="books-list-item">
-            <p class="name">Book name</p>
-            <p class="author">Book author</p>
-            <input type="checkbox" name="readStatus" id="readStatus">
-            <button>Delete</button>
-        </li><li class="books-list-item">
-            <p class="name">Book name</p>
-            <p class="author">Book author</p>
-            <input type="checkbox" name="readStatus" id="readStatus">
-            <button>Delete</button>
-        </li><li class="books-list-item">
-            <p class="name">Book name</p>
-            <p class="author">Book author</p>
-            <input type="checkbox" name="readStatus" id="readStatus">
-            <button>Delete</button>
-        </li><li class="books-list-item">
-            <p class="name">Book name</p>
-            <p class="author">Book author</p>
-            <input type="checkbox" name="readStatus" id="readStatus">
-            <button>Delete</button>
-        </li>
+    <ul class="books-list" id="books-list">
     </ul>
+    <button id="addNewBook" class="add-new-book">Add new book</button>
+    <div class="new-book-popup" id="newBookPopup">
+        <div class="popup-container">
+            <form action="" id="popupForm">
+                <input type="text" name="name" placeholder="Book name">
+                <input type="text" name="author" placeholder="Book author">
+                <input type="number" name="pages" placeholder="Pages number">
+                <label for="read">Read</label>
+                <input type="checkbox" name="read" id="read">
+                <div class="controls">
+                    <button id="popupCancelButton">Cancel</button>
+                    <input type="submit" value="Save">
+                </div>
+                
+            </form>
+        </div>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
