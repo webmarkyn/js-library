@@ -45,6 +45,13 @@ function render() {
   });
 }
 
+function cleanForm() {
+  [...popupFormInputs].forEach(el => {
+    el.value = "";
+    el.checked = false;
+  });
+}
+
 function bound() {
   newBookButton.addEventListener('click', e => {
     newBookPopup.style.display = 'flex';
@@ -69,13 +76,6 @@ function addBookToLibrary() {
   myLibrary.push(newBook);
   cleanForm();
   render();
-}
-
-function cleanForm() {
-  [...popupFormInputs].forEach(el => {
-    el.value = "";
-    el.checked = false;
-  });
 }
 
 function handleCheck(checkBox) {
