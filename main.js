@@ -5,18 +5,20 @@ const popupCancelButton = document.querySelector('#popupCancelButton')
 const popupForm = document.querySelector('#popupForm')
 const popupFormInputs = document.querySelectorAll('#popupForm input:not([value="Save"])')
 
-console.log(bookList)
-
 class Book {
     constructor(options) {
         this.name = options.name
         this.author = options.author
-        this.read = options.read
+        this._read = options.read
         this.pages = options.pages
+    }
+
+    set readed(value) {
+        this._read = value
     }
   }
 
-const myLibrary = [
+let myLibrary = [
     new Book({
         name: 'Book 1',
         author: 'Author 1',
@@ -51,6 +53,19 @@ function addBookToLibrary() {
     render()
 }
 
+function  r(checkBox) {
+    if (checkBox.checked) {
+        checkBox.checked = false
+        myLibrary[checkBox.dataset.index].readed = false
+        console.log(myLibrary)
+    } else {
+        checkBox.checked = true
+        myLibrary[checkBox.dataset.index].readed = true
+        console.log(myLibrary)
+    }
+    render()
+}
+
 function render() {
     bookList.innerHTML = ''
     myLibrary.forEach((book, index) => {
@@ -58,7 +73,8 @@ function render() {
         <p class="name">${book.name}</p>
         <p class="author">${book.author}</p>
         <p class="pages">${book.pages}</p>
-        <input type="checkbox" name="readStatus" id="readStatus" ${(book.read) ? 'checked' : null}>
+        <input type="checkbox" name="readStatus" onclick="r(this)" ${(book.read) ? 'checked' : null} 
+        data-index="${index}">
         <button data-index="${index}">Delete</button>
     </li>`
     })
