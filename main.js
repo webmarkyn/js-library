@@ -1,9 +1,9 @@
-const bookList = document.querySelector('#books-list'),
-  newBookButton = document.querySelector('#addNewBook'),
-  newBookPopup = document.querySelector('#newBookPopup'),
-  popupCancelButton = document.querySelector('#popupCancelButton'),
-  popupForm = document.querySelector('#popupForm'),
-  popupFormInputs = document.querySelectorAll(
+const bookList = document.querySelector('#books-list')
+const newBookButton = document.querySelector('#addNewBook')
+const newBookPopup = document.querySelector('#newBookPopup')
+const popupCancelButton = document.querySelector('#popupCancelButton')
+const popupForm = document.querySelector('#popupForm')
+const popupFormInputs = document.querySelectorAll(
     '#popupForm input:not([value="Save"])'
   )
 
