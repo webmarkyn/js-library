@@ -1,11 +1,11 @@
-const bookList = document.querySelector("#books-list"),
-  newBookButton = document.querySelector("#addNewBook"),
-  newBookPopup = document.querySelector("#newBookPopup"),
-  popupCancelButton = document.querySelector("#popupCancelButton"),
-  popupForm = document.querySelector("#popupForm"),
+const bookList = document.querySelector('#books-list'),
+  newBookButton = document.querySelector('#addNewBook'),
+  newBookPopup = document.querySelector('#newBookPopup'),
+  popupCancelButton = document.querySelector('#popupCancelButton'),
+  popupForm = document.querySelector('#popupForm'),
   popupFormInputs = document.querySelectorAll(
     '#popupForm input:not([value="Save"])'
-  );
+  )
 
 class Book {
   constructor(options) {
@@ -22,32 +22,32 @@ class Book {
 
 let myLibrary = [
   new Book({
-    name: "Book 1",
-    author: "Author 1",
+    name: 'Book 1',
+    author: 'Author 1',
     read: false,
     pages: 35
   })
 ];
 
 function bound() {
-  newBookButton.addEventListener("click", e => {
-    newBookPopup.style.display = "flex";
+  newBookButton.addEventListener('click', e => {
+    newBookPopup.style.display = 'flex';
   });
-  popupCancelButton.addEventListener("click", e => {
-    newBookPopup.style.display = "none";
+  popupCancelButton.addEventListener('click', e => {
+    newBookPopup.style.display = 'none';
     cleanForm();
   });
-  popupForm.addEventListener("submit", e => {
+  popupForm.addEventListener('submit', e => {
     e.preventDefault();
     addBookToLibrary();
-    newBookPopup.style.display = "none";
+    newBookPopup.style.display = 'none';
   });
 }
 
 function addBookToLibrary() {
   let options = {};
   [...popupFormInputs].forEach(el => {
-    options[el.name] = el.value == "on" ? el.checked : el.value;
+    options[el.name] = el.value == 'on' ? el.checked : el.value;
   });
   let newBook = new Book(options);
   myLibrary.push(newBook);
@@ -72,7 +72,7 @@ function handleDelete(el) {
 }
 
 function render() {
-  bookList.innerHTML = "";
+  bookList.innerHTML = '';
   myLibrary.forEach((book, index) => {
     bookList.innerHTML += `<li class="books-list-item">
         <p class="name">${book.name}</p>
