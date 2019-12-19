@@ -12,10 +12,6 @@ class Book {
     this.read = options.read;
     this.pages = options.pages;
   }
-
-  set read(value) {
-    this.read = value;
-  }
 }
 
 const myLibrary = [
