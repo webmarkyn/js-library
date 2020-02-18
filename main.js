@@ -52,12 +52,14 @@ function bound() {
   newBookButton.addEventListener('click', () => {
     newBookPopup.style.display = 'flex';
   });
-  popupCancelButton.addEventListener('click', () => {
+  popupCancelButton.addEventListener('click', (e) => {
+    e.preventDefault();
     newBookPopup.style.display = 'none';
     cleanForm();
   });
 
   function addBookToLibrary() {
+    console.log('hi');
     const options = {};
     [...popupFormInputs].forEach((el) => {
       options[el.name] = el.value === 'on' ? el.checked : el.value;
