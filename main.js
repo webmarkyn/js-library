@@ -59,7 +59,6 @@ function bound() {
   });
 
   function addBookToLibrary() {
-    console.log('hi');
     const options = {};
     [...popupFormInputs].forEach((el) => {
       options[el.name] = el.value === 'on' ? el.checked : el.value;
