@@ -71,8 +71,17 @@ function bound() {
 
   popupForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    addBookToLibrary();
-    newBookPopup.style.display = 'none';
+    const filled = [...popupFormInputs].every((el) => el.value);
+    if (filled) {
+      addBookToLibrary();
+      newBookPopup.style.display = 'none';
+    } else {
+      [...popupFormInputs].forEach((el) => {
+        if (!el.value) {
+          el.style.background = 'red';
+        }
+      });
+    }
   });
 }
 
