@@ -41,8 +41,13 @@ function render() {
 
 function cleanForm() {
   [...popupFormInputs].forEach((el) => {
-    // eslint-disable-next-line no-param-reassign
-    el.value = '';
+    if (el.type === 'checkbox') {
+      // eslint-disable-next-line no-param-reassign
+      el.checked = false;
+    } else {
+      // eslint-disable-next-line no-param-reassign
+      el.value = '';
+    }
     // eslint-disable-next-line no-param-reassign
     el.checked = false;
   });
@@ -78,6 +83,7 @@ function bound() {
     } else {
       [...popupFormInputs].forEach((el) => {
         if (!el.value) {
+          // eslint-disable-next-line no-param-reassign
           el.style.background = 'red';
         }
       });
