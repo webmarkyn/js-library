@@ -29,7 +29,7 @@ function render() {
     bookList.innerHTML += `<li class="books-list-item">
         <p class="name">${book.name}</p>
         <p class="author">${book.author}</p>
-        <p class="pages">${book.pages}</p>
+        <p class="pages">Pages: ${book.pages}</p>
         <input type="checkbox" name="readStatus" onchange="handleCheck(this)" ${
   book.read ? 'checked' : null
 } 
@@ -41,8 +41,13 @@ function render() {
 
 function cleanForm() {
   [...popupFormInputs].forEach((el) => {
-    // eslint-disable-next-line no-param-reassign
-    el.value = '';
+    if (el.type === 'checkbox') {
+      // eslint-disable-next-line no-param-reassign
+      el.checked = false;
+    } else {
+      // eslint-disable-next-line no-param-reassign
+      el.value = '';
+    }
     // eslint-disable-next-line no-param-reassign
     el.checked = false;
   });
@@ -52,7 +57,8 @@ function bound() {
   newBookButton.addEventListener('click', () => {
     newBookPopup.style.display = 'flex';
   });
-  popupCancelButton.addEventListener('click', () => {
+  popupCancelButton.addEventListener('click', (e) => {
+    e.preventDefault();
     newBookPopup.style.display = 'none';
     cleanForm();
   });
@@ -70,8 +76,18 @@ function bound() {
 
   popupForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    addBookToLibrary();
-    newBookPopup.style.display = 'none';
+    const filled = [...popupFormInputs].every(el => el.value);
+    if (filled) {
+      addBookToLibrary();
+      newBookPopup.style.display = 'none';
+    } else {
+      [...popupFormInputs].forEach((el) => {
+        if (!el.value) {
+          // eslint-disable-next-line no-param-reassign
+          el.style.background = 'red';
+        }
+      });
+    }
   });
 }
 
