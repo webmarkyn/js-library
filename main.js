@@ -76,7 +76,7 @@ function bound() {
 
   popupForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const filled = [...popupFormInputs].every((el) => el.value);
+    const filled = [...popupFormInputs].every(el => el.value);
     if (filled) {
       addBookToLibrary();
       newBookPopup.style.display = 'none';
