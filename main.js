@@ -29,7 +29,7 @@ function render() {
     bookList.innerHTML += `<li class="books-list-item">
         <p class="name">${book.name}</p>
         <p class="author">${book.author}</p>
-        <p class="pages">${book.pages}</p>
+        <p class="pages">Pages: ${book.pages}</p>
         <input type="checkbox" name="readStatus" onchange="handleCheck(this)" ${
   book.read ? 'checked' : null
 } 
